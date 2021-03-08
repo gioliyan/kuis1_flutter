@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
                                   fontWeight: FontWeight.bold, fontSize: 25)),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 40),
+                          margin: EdgeInsets.only(left: 45),
                           child: DropdownButton<String>(
                             items: listItem.map((String value) {
                               return DropdownMenuItem<String>(
@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                     Container(
-                        margin: EdgeInsets.only(left: 40, top: 65),
+                        margin: EdgeInsets.only(left: 51, top: 65),
                         child: Text("Convert",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20))),
@@ -83,13 +83,13 @@ class _MyAppState extends State<MyApp> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(top: 25, left: 50),
+                          margin: EdgeInsets.only(top: 25, left: 45),
                           child: Text("To",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 25)),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 50),
+                          margin: EdgeInsets.only(left: 55),
                           child: DropdownButton<String>(
                             items: listItem.map((String value) {
                               return DropdownMenuItem<String>(
@@ -97,7 +97,7 @@ class _MyAppState extends State<MyApp> {
                                 child: Text(value),
                               );
                             }).toList(),
-                            value: newValue1,
+                            value: newValue2,
                             onChanged: (String changeValue) {
                               setState(() {
                                 newValue2 = changeValue;
@@ -108,7 +108,38 @@ class _MyAppState extends State<MyApp> {
                       ],
                     ),
                   ],
-                )
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: RaisedButton(
+                    onPressed: () {
+                      setState(() {});
+                    },
+                    color: Colors.blue,
+                    hoverColor: Colors.blue[900],
+                    textColor: Colors.white,
+                    child: Text("Konversi Uang"),
+                  ),
+                ),
+                Text("Hasil", style: TextStyle(fontSize: 25)),
+                Text("0.0", style: TextStyle(fontSize: 35)),
+                Container(
+                  margin: EdgeInsets.only(top: 15),
+                  child: Text(
+                    "Riwayat Konversi",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+                Expanded(
+                    child: ListView(
+                        children: listViewItem.map((String value) {
+                  return Container(
+                      margin: EdgeInsets.all(10),
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 15),
+                      ));
+                }).toList()))
               ],
             ),
           ),
