@@ -11,11 +11,51 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
+void konversi() {
+  inputuser = double.parse(inptuser.text);
+  if (newValue1 == "IDR") {
+    if (newValue2 == "USD") {
+      result = inputuser / 14425;
+      listViewItem.add("$newValue1 to $newValue2 = $result");
+    } else if (newValue2 == "EUR") {
+      result = inputuser / 17107;
+      listViewItem.add("$newValue1 to $newValue2 = $result");
+    } else {
+      result = inputuser;
+      listViewItem.add("$newValue1 to $newValue2 = $result");
+    }
+  } else if (newValue1 == "USD") {
+    if (newValue2 == "IDR") {
+      result = inputuser * 14425;
+      listViewItem.add("$newValue1 to $newValue2 = $result");
+    } else if (newValue2 == "EUR") {
+      result = inputuser * 0.84;
+      listViewItem.add("$newValue1 to $newValue2 = $result");
+    } else {
+      result = inputuser;
+      listViewItem.add("$newValue1 to $newValue2 = $result");
+    }
+  } else if (newValue1 == "EUR") {
+    if (newValue2 == "IDR") {
+      result = inputuser * 17107;
+      listViewItem.add("$newValue1 to $newValue2 = $result");
+    } else if (newValue2 == "USD") {
+      result = inputuser * 1.18;
+      listViewItem.add("$newValue1 to $newValue2 = $result");
+    } else {
+      result = inputuser;
+      listViewItem.add("$newValue1 to $newValue2 = $result");
+    }
+  }
+}
+
 List<String> listViewItem = List<String>();
 TextEditingController inptuser = new TextEditingController();
 var listItem = ["USD", "IDR", "EUR"];
 String newValue1 = "IDR";
 String newValue2 = "USD";
+double inputuser = 0;
+double result = 0;
 
 class _MyAppState extends State<MyApp> {
   @override
@@ -113,7 +153,9 @@ class _MyAppState extends State<MyApp> {
                   width: double.infinity,
                   child: RaisedButton(
                     onPressed: () {
-                      setState(() {});
+                      setState(() {
+                        konversi();
+                      });
                     },
                     color: Colors.blue,
                     hoverColor: Colors.blue[900],
@@ -122,9 +164,9 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
                 Text("Hasil", style: TextStyle(fontSize: 25)),
-                Text("0.0", style: TextStyle(fontSize: 35)),
+                Text(result.toStringAsFixed(2), style: TextStyle(fontSize: 35)),
                 Container(
-                  margin: EdgeInsets.only(top: 15),
+                  margin: EdgeInsets.only(top: 10),
                   child: Text(
                     "Riwayat Konversi",
                     style: TextStyle(fontSize: 20),
@@ -133,8 +175,10 @@ class _MyAppState extends State<MyApp> {
                 Expanded(
                     child: ListView(
                         children: listViewItem.map((String value) {
-                  return Container(
-                      margin: EdgeInsets.all(10),
+                  Container(
+                      margin: EdgeInsets.only(
+                        top: 5,
+                      ),
                       child: Text(
                         value,
                         style: TextStyle(fontSize: 15),
